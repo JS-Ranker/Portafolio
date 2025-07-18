@@ -1,0 +1,73 @@
+<!-- K6 Dashboard Mockup SVG -->
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#1a1d23"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="800" height="60" fill="#2d3748"/>
+  <text x="20" y="35" font-family="system-ui" font-size="18" font-weight="600" fill="#ffffff">K6 Performance Monitor - PC Factory</text>
+  
+  <!-- Sidebar -->
+  <rect x="0" y="60" width="200" height="540" fill="#2d3748"/>
+  <rect x="10" y="80" width="180" height="30" rx="4" fill="#4a5568"/>
+  <text x="20" y="100" font-family="system-ui" font-size="12" fill="#cbd5e0">Dashboard</text>
+  <rect x="10" y="120" width="180" height="30" rx="4" fill="#2d3748"/>
+  <text x="20" y="140" font-family="system-ui" font-size="12" fill="#a0aec0">Tests</text>
+  <rect x="10" y="160" width="180" height="30" rx="4" fill="#2d3748"/>
+  <text x="20" y="180" font-family="system-ui" font-size="12" fill="#a0aec0">Reports</text>
+  <rect x="10" y="200" width="180" height="30" rx="4" fill="#2d3748"/>
+  <text x="20" y="220" font-family="system-ui" font-size="12" fill="#a0aec0">Metrics</text>
+  
+  <!-- Main Content -->
+  <!-- Stats Cards -->
+  <rect x="220" y="80" width="140" height="80" rx="8" fill="#667eea"/>
+  <text x="230" y="105" font-family="system-ui" font-size="11" fill="#ffffff">Response Time</text>
+  <text x="230" y="140" font-family="system-ui" font-size="24" font-weight="700" fill="#ffffff">1.2s</text>
+  
+  <rect x="370" y="80" width="140" height="80" rx="8" fill="#48bb78"/>
+  <text x="380" y="105" font-family="system-ui" font-size="11" fill="#ffffff">Success Rate</text>
+  <text x="380" y="140" font-family="system-ui" font-size="24" font-weight="700" fill="#ffffff">99.5%</text>
+  
+  <rect x="520" y="80" width="140" height="80" rx="8" fill="#ed8936"/>
+  <text x="530" y="105" font-family="system-ui" font-size="11" fill="#ffffff">Requests/s</text>
+  <text x="530" y="140" font-family="system-ui" font-size="24" font-weight="700" fill="#ffffff">150</text>
+  
+  <rect x="670" y="80" width="110" height="80" rx="8" fill="#e53e3e"/>
+  <text x="680" y="105" font-family="system-ui" font-size="11" fill="#ffffff">Errors</text>
+  <text x="680" y="140" font-family="system-ui" font-size="24" font-weight="700" fill="#ffffff">3</text>
+  
+  <!-- Chart Area -->
+  <rect x="220" y="180" width="560" height="200" rx="8" fill="#2d3748"/>
+  <text x="230" y="205" font-family="system-ui" font-size="14" font-weight="600" fill="#ffffff">Performance Over Time</text>
+  
+  <!-- Chart Lines -->
+  <polyline points="240,350 280,330 320,340 360,320 400,310 440,325 480,315 520,300 560,295 600,285 640,280 680,275 720,270 760,265" 
+           stroke="#667eea" stroke-width="3" fill="none"/>
+  <polyline points="240,360 280,350 320,360 360,340 400,330 440,345 480,335 520,320 560,315 600,305 640,300 680,295 720,290 760,285" 
+           stroke="#48bb78" stroke-width="2" fill="none"/>
+  
+  <!-- Y-axis labels -->
+  <text x="235" y="270" font-family="system-ui" font-size="10" fill="#a0aec0">2s</text>
+  <text x="235" y="310" font-family="system-ui" font-size="10" fill="#a0aec0">1s</text>
+  <text x="235" y="350" font-family="system-ui" font-size="10" fill="#a0aec0">0s</text>
+  
+  <!-- Recent Tests -->
+  <rect x="220" y="400" width="560" height="180" rx="8" fill="#2d3748"/>
+  <text x="230" y="425" font-family="system-ui" font-size="14" font-weight="600" fill="#ffffff">Recent Test Results</text>
+  
+  <!-- Test Items -->
+  <rect x="230" y="440" width="540" height="30" fill="#4a5568"/>
+  <text x="240" y="460" font-family="system-ui" font-size="12" fill="#ffffff">Load Test - Homepage</text>
+  <text x="500" y="460" font-family="system-ui" font-size="12" fill="#48bb78">✓ Passed</text>
+  <text x="600" y="460" font-family="system-ui" font-size="12" fill="#a0aec0">2 min ago</text>
+  
+  <rect x="230" y="480" width="540" height="30" fill="#2d3748"/>
+  <text x="240" y="500" font-family="system-ui" font-size="12" fill="#ffffff">Stress Test - API</text>
+  <text x="500" y="500" font-family="system-ui" font-size="12" fill="#ed8936">⚠ Warning</text>
+  <text x="600" y="500" font-family="system-ui" font-size="12" fill="#a0aec0">5 min ago</text>
+  
+  <rect x="230" y="520" width="540" height="30" fill="#4a5568"/>
+  <text x="240" y="540" font-family="system-ui" font-size="12" fill="#ffffff">Spike Test - Checkout</text>
+  <text x="500" y="540" font-family="system-ui" font-size="12" fill="#48bb78">✓ Passed</text>
+  <text x="600" y="540" font-family="system-ui" font-size="12" fill="#a0aec0">10 min ago</text>
+</svg>

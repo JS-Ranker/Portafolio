@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { OptimizedImage, images } from '../utils/images';
 import './Hero.css';
 
 const Hero = () => {
@@ -94,18 +95,34 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <motion.div 
-            className="image-placeholder"
+            className="profile-image-container"
             animate={{ 
-              y: [0, -20, 0],
-              rotate: [0, 5, -5, 0]
+              y: [0, -10, 0],
             }}
             transition={{ 
-              duration: 6,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           >
-            <i className="fas fa-user-circle"></i>
+            <OptimizedImage
+              src={images.profile.avatar}
+              alt="Héctor Sanhueza - Desarrollador Full Stack"
+              className="profile-image"
+              fallback="/assets/images/placeholder.svg"
+            />
+            <motion.div 
+              className="profile-glow"
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
           </motion.div>
         </motion.div>
       </div>

@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { OptimizedImage, images } from '../utils/images';
 import './Projects.css';
 
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.2 });
+  const [selectedImage, setSelectedImage] = useState({});
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -33,7 +35,17 @@ const Projects = () => {
       description: "Aplicación completa web y móvil para gestión veterinaria. Incluye e-commerce integrado, videollamadas en vivo, notificaciones push y sistema completo de fichas electrónicas para mascotas.",
       tech: ["React", "Vite", "Node.js", "Express", "Ionic", "Angular"],
       github: "https://github.com/JS-Ranker/Proyecto_Titulo",
-      icon: "fas fa-heartbeat"
+      icon: "fas fa-heartbeat",
+      images: {
+        main: images.projects.veterinaria.main,
+        gallery: [
+          images.projects.veterinaria.login,
+          images.projects.veterinaria.adoptame,
+          images.projects.veterinaria.mascotas,
+          images.projects.veterinaria.tienda,
+          images.projects.veterinaria.quienes,
+        ]
+      }
     },
     {
       id: 2,
@@ -41,7 +53,14 @@ const Projects = () => {
       description: "Implementación de pruebas de carga con K6 para optimizar el rendimiento de aplicaciones web. Desarrollo de scripts especializados para áreas de TI y e-commerce con monitoreo en tiempo real.",
       tech: ["K6", "JavaScript", "Performance Testing", "Load Testing", "Monitoring"],
       github: "https://github.com/JS-Ranker/Monitoreo_k6",
-      icon: "fas fa-chart-line"
+      icon: "fas fa-chart-line",
+      images: {
+        main: images.projects.k6Monitor.main,
+        gallery: [
+          images.projects.k6Monitor.dashboard,
+          images.projects.k6Monitor.reports,
+        ]
+      }
     }
   ];
 
@@ -54,6 +73,17 @@ const Projects = () => {
         behavior: 'smooth'
       });
     }
+  };
+
+  const handleImageChange = (projectId, imageUrl) => {
+    setSelectedImage(prev => ({
+      ...prev,
+      [projectId]: imageUrl
+    }));
+  };
+
+  const getCurrentImage = (project) => {
+    return selectedImage[project.id] || project.images.main;
   };
 
   return (
@@ -81,9 +111,11 @@ const Projects = () => {
                 transition={{ duration: 0.3 }}
               >
                 <div className="project-image">
-                  <div className="image-placeholder">
-                    <i className={project.icon}></i>
-                  </div>
+                  <OptimizedImage
+                    src={getCurrentImage(project)}
+                    alt={project.title}
+                    className="main-project-image"
+                  />
                   <motion.div 
                     className="project-overlay"
                     initial={{ opacity: 0 }}
@@ -103,6 +135,37 @@ const Projects = () => {
                       </motion.a>
                     </div>
                   </motion.div>
+                  
+                  {/* Image Gallery Thumbnails */}
+                  <div className="image-gallery">
+                    <motion.button
+                      className={`gallery-thumb ${getCurrentImage(project) === project.images.main ? 'active' : ''}`}
+                      onClick={() => handleImageChange(project.id, project.images.main)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <OptimizedImage
+                        src={project.images.main}
+                        alt={`${project.title} - Principal`}
+                        className="thumb-image"
+                      />
+                    </motion.button>
+                    {project.images.gallery.map((imageUrl, index) => (
+                      <motion.button
+                        key={index}
+                        className={`gallery-thumb ${getCurrentImage(project) === imageUrl ? 'active' : ''}`}
+                        onClick={() => handleImageChange(project.id, imageUrl)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <OptimizedImage
+                          src={imageUrl}
+                          alt={`${project.title} - Vista ${index + 2}`}
+                          className="thumb-image"
+                        />
+                      </motion.button>
+                    ))}
+                  </div>
                 </div>
                 <div className="project-info">
                   <h3>{project.title}</h3>

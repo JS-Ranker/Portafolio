@@ -27,12 +27,69 @@
 
 .project-image {
   position: relative;
-  height: 200px;
-  background: var(--gradient-primary);
+  height: 280px;
+  background: var(--bg-secondary);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.main-project-image {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  object-position: center;
+  background: white;
+  padding: var(--spacing-sm);
+  transition: all var(--transition-normal);
+}
+
+.main-project-image:hover {
+  transform: scale(1.02);
+}
+
+.image-gallery {
+  display: flex;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.02);
+  padding: var(--spacing-sm);
+  gap: var(--spacing-sm);
+  overflow-x: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.gallery-thumb {
+  flex-shrink: 0;
+  width: 70px;
+  height: 50px;
+  border: none;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  opacity: 0.6;
+  position: relative;
+  background: white;
+}
+
+.gallery-thumb:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.gallery-thumb.active {
+  opacity: 1;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 0 1px rgba(103, 126, 234, 0.3);
+}
+
+.thumb-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 2px;
 }
 
 .image-placeholder {
@@ -197,6 +254,25 @@
     max-width: none;
   }
 
+  .project-image {
+    height: 260px;
+  }
+
+  .main-project-image {
+    height: 200px;
+    padding: var(--spacing-xs);
+  }
+
+  .image-gallery {
+    height: 55px;
+    padding: var(--spacing-xs);
+  }
+
+  .gallery-thumb {
+    width: 60px;
+    height: 45px;
+  }
+
   .cta-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -215,6 +291,25 @@
 @media (max-width: 480px) {
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-image {
+    height: 240px;
+  }
+
+  .main-project-image {
+    height: 180px;
+    padding: 4px;
+  }
+
+  .image-gallery {
+    height: 50px;
+    padding: 4px;
+  }
+
+  .gallery-thumb {
+    width: 55px;
+    height: 40px;
   }
 
   .project-info {
