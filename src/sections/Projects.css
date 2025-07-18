@@ -1,0 +1,249 @@
+/* ===== PROJECTS SECTION ===== */
+.projects {
+  padding: var(--spacing-3xl) 0;
+  background: var(--bg-primary);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.project-card {
+  background: var(--gradient-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-5px);
+}
+
+.project-image {
+  position: relative;
+  height: 200px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-placeholder {
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all var(--transition-normal);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-links {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.project-link {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  transition: all var(--transition-normal);
+}
+
+.project-link:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.project-info {
+  padding: var(--spacing-xl);
+}
+
+.project-info h3 {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.project-info p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.tech-tag {
+  background: var(--gradient-accent);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Projects CTA */
+.projects-cta {
+  background: var(--gradient-primary);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-3xl);
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.cta-content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--spacing-xl);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-icon {
+  font-size: 3rem;
+  opacity: 0.9;
+}
+
+.cta-text h3 {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.cta-text p {
+  opacity: 0.9;
+  font-size: 1.125rem;
+}
+
+.cta-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.btn-github,
+.btn-contact {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.btn-github:hover,
+.btn-contact:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.cta-decoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.floating-icon {
+  font-size: 2rem;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .project-card {
+    max-width: none;
+  }
+
+  .cta-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--spacing-lg);
+  }
+
+  .cta-actions {
+    justify-content: center;
+  }
+
+  .cta-decoration {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-info {
+    padding: var(--spacing-lg);
+  }
+
+  .project-info h3 {
+    font-size: 1.25rem;
+  }
+
+  .projects-cta {
+    padding: var(--spacing-xl);
+  }
+
+  .cta-text h3 {
+    font-size: 1.5rem;
+  }
+
+  .cta-text p {
+    font-size: 1rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+  }
+
+  .btn-github,
+  .btn-contact {
+    width: 100%;
+    justify-content: center;
+  }
+}

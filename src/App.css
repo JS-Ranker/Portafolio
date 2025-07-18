@@ -1,0 +1,15 @@
+/* ===== APP STYLES ===== */
+.App {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure sections have proper spacing for navbar */
+section {
+  scroll-margin-top: 80px;
+}
