@@ -9,7 +9,7 @@ export const images = {
     hero: '/assets/images/profile/hector-sanhueza.jpg',
     about: '/assets/images/profile/hector-sanhueza.jpg',
   },
-  
+
   // Proyectos
   projects: {
     veterinaria: {
@@ -27,7 +27,7 @@ export const images = {
       reports: '/assets/images/projects/Practica/k6-reports.svg',
     },
   },
-  
+
   // Tecnologías y habilidades
   skills: {
     javascript: '/assets/images/skills/javascript.svg',
@@ -40,7 +40,7 @@ export const images = {
     php: '/assets/images/skills/php.svg',
     // Agrega más según tus habilidades
   },
-  
+
   // Iconos generales
   icons: {
     github: '/assets/images/icons/github.svg',
@@ -53,12 +53,12 @@ export const images = {
 };
 
 // Componente Image optimizado con lazy loading y fallback
-export const OptimizedImage = ({ 
-  src, 
-  alt, 
-  className = '', 
+export const OptimizedImage = ({
+  src,
+  alt,
+  className = '',
   fallback = '/assets/images/placeholder.svg',
-  ...props 
+  ...props
 }) => {
   const handleError = (e) => {
     e.target.src = fallback;

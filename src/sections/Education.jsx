@@ -77,44 +77,44 @@ const Education = () => {
 
           <div className="education-timeline">
             {educationData.map((item, index) => (
-              <motion.div 
-                key={item.id} 
+              <motion.div
+                key={item.id}
                 className="education-item"
                 variants={itemVariants}
               >
                 <div className="education-marker">
                   <div className="education-year">{item.period}</div>
-                  <motion.div 
+                  <motion.div
                     className={`education-dot ${item.status === 'in-progress' ? 'active' : ''}`}
                     initial={{ scale: 0 }}
                     animate={isInView ? { scale: 1 } : { scale: 0 }}
                     transition={{ delay: index * 0.2 + 0.5 }}
                   />
                 </div>
-                
-                <motion.div 
+
+                <motion.div
                   className={`education-card ${item.status}`}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
                   <div className="education-header">
                     <div className="education-icon">
-                      <i className={item.status === 'completed' ? 'fas fa-graduation-cap' : 'fas fa-laptop-code'}></i>
+                      <i className="fas fa-graduation-cap"></i>
                     </div>
                     <div className={`education-status ${item.status}`}>
                       {item.statusText}
                     </div>
                   </div>
-                  
+
                   <div className="education-content">
                     <h3>{item.title}</h3>
                     <h4>{item.subtitle}</h4>
                     <p>{item.description}</p>
-                    
+
                     <div className="education-highlights">
                       {item.highlights.map((highlight, idx) => (
-                        <motion.div 
-                          key={idx} 
+                        <motion.div
+                          key={idx}
                           className="highlight-item"
                           initial={{ opacity: 0, y: 10 }}
                           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
@@ -125,12 +125,12 @@ const Education = () => {
                         </motion.div>
                       ))}
                     </div>
-                    
+
                     {item.progress && (
                       <div className="progress-indicator">
                         <div className="progress-text">Progreso actual</div>
                         <div className="progress-bar">
-                          <motion.div 
+                          <motion.div
                             className="progress-fill"
                             initial={{ width: 0 }}
                             animate={isInView ? { width: `${item.progress}%` } : { width: 0 }}

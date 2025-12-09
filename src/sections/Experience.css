@@ -1,0 +1,192 @@
+/* ===== EXPERIENCE SECTION - TERMINAL DE ALTA COSTURA ===== */
+.experience {
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.experience::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+}
+
+.timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    padding: var(--spacing-xl) 0;
+}
+
+/* Vertical Line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: rgba(100, 255, 218, 0.1);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: var(--spacing-3xl);
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    align-self: flex-start;
+    text-align: right;
+    padding-right: var(--spacing-2xl);
+}
+
+.timeline-item:nth-child(even) {
+    align-self: flex-end;
+    text-align: left;
+    padding-left: var(--spacing-2xl);
+    margin-left: 50%;
+}
+
+/* Timeline Dot */
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-primary);
+    border: 4px solid var(--accent-primary);
+    border-radius: 50%;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.2);
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -10px;
+}
+
+/* Glass Card */
+.history-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    position: relative;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.history-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+.history-header {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.history-role {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.history-company {
+    font-family: var(--font-mono);
+    color: var(--accent-primary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.timeline-item:nth-child(odd) .history-company {
+    justify-content: flex-end;
+}
+
+.history-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+    display: block;
+}
+
+.history-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history-content li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.timeline-item:nth-child(odd) .history-content li {
+    flex-direction: row-reverse;
+}
+
+.history-content li i {
+    color: var(--accent-primary);
+    font-size: 0.8rem;
+    margin-top: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timeline::after {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 0;
+        text-align: left;
+        margin-left: 0;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        text-align: left;
+        padding-left: 50px;
+        padding-right: 0;
+        margin-left: 0;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 10px;
+        right: auto;
+    }
+
+    .timeline-item:nth-child(odd) .history-company,
+    .timeline-item:nth-child(odd) .history-content li {
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+}

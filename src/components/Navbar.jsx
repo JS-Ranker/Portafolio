@@ -14,19 +14,19 @@ const Navbar = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      
+
       // Update navbar state
       setIsScrolled(scrollY > 50);
-      
+
       // Calculate scroll progress
       const progress = (scrollY / (documentHeight - windowHeight)) * 100;
       setScrollProgress(Math.min(progress, 100));
-      
+
       // Show/hide scroll to top button
       setShowScrollTop(scrollY > 400);
-      
+
       // Update active section
-      const sections = ['home', 'about', 'projects', 'education', 'skills', 'contact'];
+      const sections = ['home', 'about', 'experience', 'projects', 'education', 'skills', 'certifications', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -72,17 +72,19 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { id: 'home', label: 'Inicio', icon: '🏠' },
-    { id: 'about', label: 'Sobre mí', icon: '👨‍💻' },
-    { id: 'projects', label: 'Proyectos', icon: '🚀' },
-    { id: 'education', label: 'Educación', icon: '🎓' },
-    { id: 'skills', label: 'Habilidades', icon: '⚡' },
-    { id: 'contact', label: 'Contacto', icon: '📫' }
+    { id: 'home', label: 'Inicio', icon: 'fas fa-home' },
+    { id: 'about', label: 'Sobre mí', icon: 'fas fa-user' },
+    { id: 'experience', label: 'Experiencia', icon: 'fas fa-briefcase' },
+    { id: 'projects', label: 'Proyectos', icon: 'fas fa-code' },
+    { id: 'education', label: 'Educación', icon: 'fas fa-graduation-cap' },
+    { id: 'skills', label: 'Habilidades', icon: 'fas fa-layer-group' },
+    { id: 'certifications', label: 'Certificaciones', icon: 'fas fa-certificate' },
+    { id: 'contact', label: 'Contacto', icon: 'fas fa-envelope' }
   ];
 
   return (
     <>
-      <motion.nav 
+      <motion.nav
         className={`navbar ${isScrolled ? 'scrolled' : ''}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -90,15 +92,15 @@ const Navbar = () => {
       >
         <div className="nav-container">
           {/* Progress Bar */}
-          <motion.div 
+          <motion.div
             className="nav-progress"
             style={{ width: `${scrollProgress}%` }}
             initial={{ width: 0 }}
             animate={{ width: `${scrollProgress}%` }}
             transition={{ duration: 0.1 }}
           />
-          
-          <motion.div 
+
+          <motion.div
             className="nav-logo"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -120,7 +122,7 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <span className="nav-icon" style={{ marginRight: '8px' }}>{item.icon}</span>
+                <i className={`${item.icon} nav-icon`}></i>
                 {item.label}
               </motion.button>
             ))}
@@ -169,9 +171,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="nav-icon" style={{ marginRight: '12px', fontSize: '1.2rem' }}>
-                    {item.icon}
-                  </span>
+                  <i className={`${item.icon} nav-icon`}></i>
                   {item.label}
                 </motion.button>
               ))}
@@ -194,7 +194,7 @@ const Navbar = () => {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             aria-label="Volver al inicio"
           >
-            ↑
+            <i className="fas fa-chevron-up"></i>
           </motion.button>
         )}
       </AnimatePresence>

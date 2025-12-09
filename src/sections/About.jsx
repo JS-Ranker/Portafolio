@@ -40,22 +40,22 @@ const About = () => {
           <motion.p className="section-subtitle" variants={itemVariants}>
             Conoce más sobre mi trayectoria y experiencia como desarrollador
           </motion.p>
-          
+
           <div className="about-content">
             <motion.div className="about-text" variants={itemVariants}>
               <h3>¿Quién soy?</h3>
               <p>
-                ¡Hola! Soy Héctor Sanhueza, un apasionado Desarrollador Web Full Stack de Chile 🇨🇱, 
+                ¡Hola! Soy Héctor Sanhueza, un apasionado Desarrollador Web Full Stack de Chile 🇨🇱,
                 con experiencia en la creación de soluciones digitales modernas, eficientes y centradas en el usuario.
               </p>
               <p>
-                Desde mis inicios, me he enfocado en combinar la lógica del backend con la experiencia visual del frontend, 
-                utilizando tecnologías como JavaScript, React, Node.js, MySQL. Me entusiasma aprender constantemente y 
-                mantenerme al día con las tendencias del desarrollo web, trabajando en proyectos que resuelvan problemas 
+                Desde mis inicios, me he enfocado en combinar la lógica del backend con la experiencia visual del frontend,
+                utilizando tecnologías como JavaScript, React, Node.js, MySQL. Me entusiasma aprender constantemente y
+                mantenerme al día con las tendencias del desarrollo web, trabajando en proyectos que resuelvan problemas
                 reales y aporten valor.
               </p>
-              
-              <motion.div 
+
+              <motion.div
                 className="about-stats"
                 variants={containerVariants}
               >
@@ -72,11 +72,11 @@ const About = () => {
                   <p>Dedicación</p>
                 </motion.div>
               </motion.div>
-              
+
               <motion.div className="cv-download" variants={itemVariants}>
-                <motion.a 
-                  href="/assets/cv/Hector_Sanhueza_CV.pdf" 
-                  className="btn btn-cv" 
+                <motion.a
+                  href="/assets/cv/Hector_Sanhueza_CV.pdf"
+                  className="btn btn-cv"
                   download="Hector_Sanhueza_CV.pdf"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -87,24 +87,24 @@ const About = () => {
                 </motion.a>
               </motion.div>
             </motion.div>
-            
-            <motion.div 
-              className="about-image" 
+
+            <motion.div
+              className="about-image"
               variants={itemVariants}
             >
-              <motion.div 
+              <motion.div
                 className="image-placeholder"
                 whileHover={{ scale: 1.05 }}
-                animate={{ 
+                animate={{
                   y: [0, -10, 0],
                 }}
-                transition={{ 
+                transition={{
                   duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               >
-                <i className="fas fa-code"></i>
+                <img src="/assets/images/Logos/LOGO.png" alt="Logo Héctor Sanhueza" className="about-logo-img" />
               </motion.div>
             </motion.div>
           </div>

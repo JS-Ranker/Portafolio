@@ -1,7 +1,7 @@
-/* ===== EDUCATION SECTION ===== */
+/* ===== EDUCATION SECTION - TERMINAL DE ALTA COSTURA ===== */
 .education {
   padding: var(--spacing-3xl) 0;
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
 }
 
 .education-timeline {
@@ -24,7 +24,7 @@
   top: 100px;
   bottom: -48px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--primary-color), transparent);
+  background: linear-gradient(to bottom, var(--accent-primary), transparent);
 }
 
 .education-marker {
@@ -33,25 +33,26 @@
 }
 
 .education-year {
-  background: var(--gradient-primary);
-  color: white;
+  background: rgba(100, 255, 218, 0.1);
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-lg);
   font-weight: var(--font-weight-medium);
   font-size: 0.875rem;
   margin-bottom: var(--spacing-md);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
 }
 
 .education-dot {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--primary-color);
+  background: var(--accent-primary);
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  box-shadow: 0 0 0 4px white, 0 0 0 8px var(--primary-color);
+  box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 8px var(--accent-primary);
 }
 
 .education-dot.active {
@@ -64,20 +65,25 @@
   0% {
     box-shadow: 0 0 0 4px white, 0 0 0 8px var(--accent-color), 0 0 0 12px rgba(79, 172, 254, 0.3);
   }
+
   50% {
     box-shadow: 0 0 0 4px white, 0 0 0 8px var(--accent-color), 0 0 0 20px rgba(79, 172, 254, 0);
   }
+
   100% {
     box-shadow: 0 0 0 4px white, 0 0 0 8px var(--accent-color), 0 0 0 12px rgba(79, 172, 254, 0.3);
   }
 }
 
 .education-card {
-  background: var(--gradient-card);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-xl);
   padding: var(--spacing-xl);
-  box-shadow: var(--shadow-md);
-  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border-left: 4px solid var(--accent-primary);
+  border: 1px solid var(--glass-border);
+  border-left: 4px solid var(--accent-primary);
   transition: all var(--transition-normal);
 }
 
@@ -87,7 +93,7 @@
 }
 
 .education-card.completed {
-  border-left-color: var(--primary-color);
+  border-left-color: var(--accent-primary);
 }
 
 .education-card.in-progress {
@@ -105,16 +111,20 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: var(--gradient-primary);
+  background: rgba(100, 255, 218, 0.1);
+  border: 2px solid var(--accent-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--accent-primary);
   font-size: 1.25rem;
 }
 
+/* Removing special background for in-progress to match completed style */
 .education-card.in-progress .education-icon {
-  background: var(--gradient-accent);
+  background: rgba(100, 255, 218, 0.1);
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .education-status {
@@ -122,16 +132,19 @@
   border-radius: var(--radius-full);
   font-size: 0.875rem;
   font-weight: var(--font-weight-medium);
+  border: 1px solid transparent;
 }
 
 .education-status.completed {
-  background: rgba(102, 126, 234, 0.1);
-  color: var(--primary-color);
+  background: rgba(100, 255, 218, 0.1);
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .education-status.in-progress {
-  background: rgba(79, 172, 254, 0.1);
-  color: var(--accent-color);
+  background: rgba(100, 255, 218, 0.1);
+  color: #8892B0;
+  border-color: #8892B0;
 }
 
 .education-content h3 {
@@ -166,7 +179,8 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm);
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(100, 255, 218, 0.05);
+  border: 1px solid rgba(100, 255, 218, 0.1);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   font-weight: var(--font-weight-medium);
@@ -174,27 +188,28 @@
 }
 
 .highlight-item i {
-  color: var(--primary-color);
+  color: var(--accent-primary);
   width: 16px;
 }
 
 .progress-indicator {
-  background: rgba(79, 172, 254, 0.05);
+  background: rgba(100, 255, 218, 0.02);
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
-  border: 1px solid rgba(79, 172, 254, 0.1);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  margin-top: var(--spacing-lg);
 }
 
 .progress-text {
   font-size: 0.875rem;
   font-weight: var(--font-weight-medium);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   margin-bottom: var(--spacing-sm);
 }
 
 .progress-bar {
   height: 8px;
-  background: rgba(79, 172, 254, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-full);
   overflow: hidden;
   margin-bottom: var(--spacing-sm);
@@ -202,15 +217,16 @@
 
 .progress-fill {
   height: 100%;
-  background: var(--gradient-accent);
+  background: var(--accent-primary);
   border-radius: var(--radius-full);
   transition: width 1s ease-out;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
 }
 
 .progress-percentage {
   font-size: 0.875rem;
   font-weight: var(--font-weight-medium);
-  color: var(--accent-color);
+  color: var(--accent-primary);
   text-align: right;
 }
 
