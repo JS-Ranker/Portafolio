@@ -1,31 +1,31 @@
-import Navbar from './components/Navbar';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Hero from './sections/Hero';
-import About from './sections/About';
 import Experience from './sections/Experience';
 import Projects from './sections/Projects';
-import Education from './sections/Education';
 import Skills from './sections/Skills';
-import Certifications from './sections/Certifications';
+import Education from './sections/Education';
 import Contact from './sections/Contact';
-import Footer from './components/Footer';
-import './styles/index.css';
-import './App.css';
+import { useReveal } from './hooks/useReveal';
 
-function App() {
+const App = () => {
+  useReveal();
+
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Education />
-      <Skills />
-      <Certifications />
-      <Contact />
+    <>
+      <a className="skip-link" href="#contenido">Saltar al contenido</a>
+      <Header />
+      <main id="contenido" tabIndex={-1}>
+        <Hero />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Education />
+        <Contact />
+      </main>
       <Footer />
-    </div>
+    </>
   );
-}
+};
 
 export default App;

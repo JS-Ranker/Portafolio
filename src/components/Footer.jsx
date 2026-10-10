@@ -1,25 +1,19 @@
-import { motion } from 'framer-motion';
+import Icon from './Icon';
+import { profile } from '../data/portfolio';
 import './Footer.css';
 
-const Footer = () => {
-  return (
-    <footer className="footer">
-      <div className="container">
-        <motion.div 
-          className="footer-content"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p>&copy; 2025 Héctor Sanhueza. Todos los derechos reservados.</p>
-          <p>
-            Hecho con <i className="fas fa-heart" style={{ color: '#e74c3c' }}></i> y mucho café ☕
-          </p>
-        </motion.div>
-      </div>
-    </footer>
-  );
-};
+const Footer = () => (
+  <footer className="site-footer">
+    <div className="container footer-inner">
+      <p>
+        © {new Date().getFullYear()} {profile.name}. Hecho con React y Vite.
+      </p>
+      <a className="text-link" href="#inicio">
+        <Icon name="arrowUp" size={16} />
+        Volver arriba
+      </a>
+    </div>
+  </footer>
+);
 
 export default Footer;

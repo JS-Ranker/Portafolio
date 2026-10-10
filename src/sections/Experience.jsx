@@ -1,80 +1,43 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import SectionHeading from '../components/SectionHeading';
+import { experience } from '../data/portfolio';
 import './Experience.css';
 
-const Experience = () => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, threshold: 0.1 });
+const Experience = () => (
+  <section id="experiencia" className="section" aria-labelledby="experiencia-title">
+    <div className="container section-grid">
+      <SectionHeading
+        index="01"
+        id="experiencia-title"
+        title="Experiencia"
+        lead="Prácticas profesionales en salud y retail tecnológico."
+      />
 
-    const experiences = [
-        {
-            id: 1,
-            role: "Ingeniero en Sistemas (Práctica Profesional)",
-            company: "PC Factory",
-            date: "Abril 2025 – Junio 2025",
-            type: "Práctica",
-            responsibilities: [
-                "Apoyo en flujos críticos del sitio web (login, carrito, búsqueda).",
-                "Desarrollo de scripts de pruebas E2E con K6 y JavaScript.",
-                "Optimización de tiempos de carga y validación de interfaz.",
-                "Documentación técnica para el equipo de desarrollo."
-            ]
-        }
-        // Add more experiences here as needed
-    ];
-
-    return (
-        <section id="experience" className="experience" ref={ref}>
-            <div className="container">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <h2 className="section-title">Experiencia Laboral</h2>
-                    <p className="section-subtitle">Mi trayectoria profesional</p>
-
-                    <div className="timeline">
-                        {experiences.map((exp, index) => (
-                            <motion.div
-                                key={exp.id}
-                                className="timeline-item"
-                                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                                transition={{ delay: index * 0.2 + 0.3 }}
-                            >
-                                <div className="timeline-dot"></div>
-
-                                <div className="history-card">
-                                    <div className="history-header">
-                                        <h3 className="history-role">{exp.role}</h3>
-                                        <div className="history-company">
-                                            <i className="fas fa-building"></i>
-                                            {exp.company}
-                                        </div>
-                                        <span className="history-date">
-                                            <i className="far fa-calendar-alt"></i> {exp.date}
-                                        </span>
-                                    </div>
-
-                                    <div className="history-content">
-                                        <ul>
-                                            {exp.responsibilities.map((task, idx) => (
-                                                <li key={idx}>
-                                                    <i className="fas fa-check-circle"></i>
-                                                    <span>{task}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+      <ol className="timeline">
+        {experience.map((job) => (
+          <li key={job.id} className="timeline-item" data-reveal>
+            <div className="timeline-meta">
+              <p className="timeline-period">{job.period}</p>
+              {job.note && <p className="timeline-note">{job.note}</p>}
             </div>
-        </section>
-    );
-};
+            <div className="timeline-body">
+              <h3 className="timeline-role">{job.role}</h3>
+              <p className="timeline-company">
+                {job.company}
+                {job.current && <span className="status timeline-current">En curso</span>}
+              </p>
+              {job.responsibilities.length > 0 && (
+                <ul className="timeline-tasks">
+                  {job.responsibilities.map((task) => (
+                    <li key={task}>{task}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+);
 
 export default Experience;

@@ -3,17 +3,37 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="public/assets/images/Logos/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Héctor Sanhueza - Portafolio</title>
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <!-- Google Fonts: Inter, Space Grotesk, Fira Code -->
+  <title>Héctor Sanhueza — Fullstack Developer</title>
+  <meta name="description"
+    content="Portafolio de Héctor Sanhueza, Analista Programador y estudiante de Ingeniería en Informática en Santiago, Chile. Desarrollo web con React, Angular, Node.js y pruebas de rendimiento con k6." />
+  <meta name="author" content="Héctor Sanhueza" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0a22" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:title" content="Héctor Sanhueza — Fullstack Developer" />
+  <meta property="og:description"
+    content="Analista Programador y estudiante de Ingeniería en Informática. React, Angular, Node.js y pruebas de rendimiento con k6." />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet">
+
+  <!-- Aplica el tema guardado antes de pintar, para evitar parpadeo. Por defecto: oscuro (tema de la marca). -->
+  <script>
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+    })();
+  </script>
 </head>
 
 <body>

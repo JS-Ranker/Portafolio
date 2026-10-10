@@ -1,51 +1,14 @@
-/* ===== FOOTER - TERMINAL DE ALTA COSTURA ===== */
-.footer {
-  background: var(--bg-primary);
-  border-top: 1px solid rgba(100, 255, 218, 0.1);
-  color: var(--text-secondary);
-  padding: var(--spacing-xl) 0;
-  text-align: center;
+.site-footer {
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: var(--step--1);
 }
 
-.footer-content {
+.footer-inner {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.footer-content p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.footer-content p:first-child {
-  font-weight: var(--font-weight-medium);
-}
-
-.footer-content i {
-  margin: 0 var(--spacing-xs);
-  animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .footer {
-    padding: var(--spacing-lg) 0;
-  }
-
-  .footer-content p {
-    font-size: 0.875rem;
-  }
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
 }

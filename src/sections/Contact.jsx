@@ -1,246 +1,168 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import Icon from '../components/Icon';
+import SectionHeading from '../components/SectionHeading';
+import { contact, profile } from '../data/portfolio';
 import './Contact.css';
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const REQUEST_TIMEOUT_MS = 15000;
+
+const fields = [
+  { name: 'name', label: 'Nombre', type: 'text', autoComplete: 'name' },
+  { name: 'email', label: 'Email', type: 'email', autoComplete: 'email' },
+  { name: 'message', label: 'Mensaje', multiline: true },
+];
+
+const validate = (data) => {
+  const errors = {};
+  if (!data.get('name')?.trim()) errors.name = 'Escribe tu nombre.';
+  const email = data.get('email')?.trim() ?? '';
+  if (!email) errors.email = 'Escribe tu email para poder responderte.';
+  else if (!EMAIL_PATTERN.test(email)) errors.email = 'Revisa el formato del email (ej.: nombre@dominio.cl).';
+  if (!data.get('message')?.trim()) errors.message = 'Escribe un mensaje.';
+  return errors;
+};
+
+const channels = [
+  { icon: 'mail', label: 'Email', value: contact.email, href: `mailto:${contact.email}` },
+  { icon: 'phone', label: 'Teléfono', value: contact.phone, href: contact.phoneHref },
+  { icon: 'linkedin', label: 'LinkedIn', value: 'in/hectorsanhueza', href: contact.linkedin, external: true },
+  { icon: 'github', label: 'GitHub', value: 'JS-Ranker', href: contact.github, external: true },
+];
+
 const Contact = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.2 });
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const nextErrors = validate(data);
+    setErrors(nextErrors);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // El formulario se enviará a Formspree
-    const form = e.target;
-    form.submit();
-  };
+    const firstInvalid = fields.find((field) => nextErrors[field.name]);
+    if (firstInvalid) {
+      form.elements[firstInvalid.name].focus();
+      return;
+    }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3
-      }
+    setStatus('sending');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    try {
+      const response = await fetch(contact.formEndpoint, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error(`Formspree respondió ${response.status}`);
+      form.reset();
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    } finally {
+      clearTimeout(timeout);
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
+  const clearError = (name) => {
+    if (errors[name]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
     }
+    if (status === 'success' || status === 'error') setStatus('idle');
   };
-
-  const contactInfo = [
-    {
-      icon: "fas fa-envelope",
-      title: "Email",
-      value: "hsanhueza.dev@gmail.com",
-      link: "mailto:hsanhueza.dev@gmail.com"
-    },
-    {
-      icon: "fas fa-phone",
-      title: "Teléfono",
-      value: "+56 9 5075 0979",
-      link: "tel:+56950750979"
-    },
-    {
-      icon: "fas fa-map-marker-alt",
-      title: "Ubicación",
-      value: "Santiago, Chile",
-      link: null
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: "fab fa-linkedin",
-      url: "https://www.linkedin.com/in/hectorsanhueza/",
-      name: "LinkedIn"
-    },
-    {
-      icon: "fab fa-github",
-      url: "https://github.com/JS-Ranker",
-      name: "GitHub"
-    },
-    {
-      icon: "fas fa-envelope",
-      url: "mailto:hsanhueza.dev@gmail.com",
-      name: "Email"
-    }
-  ];
 
   return (
-    <section id="contact" className="contact" ref={ref}>
-      <div className="container">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          <motion.h2 className="section-title" variants={itemVariants}>
-            ¡Trabajemos juntos!
-          </motion.h2>
+    <section id="contacto" className="section" aria-labelledby="contacto-title">
+      <div className="container section-grid">
+        <SectionHeading
+          index="05"
+          id="contacto-title"
+          title="Contacto"
+          lead="¿Tienes una oportunidad o un proyecto en mente? Escríbeme y te respondo a la brevedad."
+        />
 
-          <div className="contact-content">
-            <motion.div className="contact-info" variants={itemVariants}>
-              <h3>Información de contacto</h3>
-              <p>Estoy disponible para nuevas oportunidades y proyectos emocionantes. ¡No dudes en contactarme!</p>
-              
-              <div className="contact-items">
-                {contactInfo.map((item, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="contact-item"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: index * 0.2 + 0.5 }}
-                    whileHover={{ x: 5 }}
-                  >
-                    <motion.i 
-                      className={item.icon}
-                      whileHover={{ scale: 1.2 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                    <div>
-                      <h4>{item.title}</h4>
-                      {item.link ? (
-                        <a href={item.link}>{item.value}</a>
-                      ) : (
-                        <p>{item.value}</p>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <motion.div 
-                className="social-links"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.8 }}
-              >
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.name}
-                    whileHover={{ scale: 1.2, y: -3 }}
-                    whileTap={{ scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <i className={social.icon}></i>
-                  </motion.a>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            <motion.div className="contact-form" variants={itemVariants}>
-              <form 
-                onSubmit={handleSubmit}
-                action="https://formspree.io/f/xblkrkzr" 
-                method="POST"
-              >
-                <motion.div 
-                  className="form-group"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.5 }}
+        <div className="contact" data-reveal>
+          <ul className="contact-channels">
+            {channels.map((channel) => (
+              <li key={channel.label}>
+                <a
+                  href={channel.href}
+                  {...(channel.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Tu nombre"
-                    value={formData.name}
-                    onChange={handleInputChange}
+                  <Icon name={channel.icon} />
+                  <span>
+                    <span className="contact-label">{channel.label}</span>
+                    <span className="contact-value">{channel.value}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+            <li className="contact-location">
+              <Icon name="pin" />
+              <span>
+                <span className="contact-label">Ubicación</span>
+                <span className="contact-value">{profile.location}</span>
+              </span>
+            </li>
+          </ul>
+
+          <form className="contact-form" onSubmit={handleSubmit} noValidate>
+            {fields.map((field) => {
+              const id = `contact-${field.name}`;
+              const errorId = `${id}-error`;
+              const Control = field.multiline ? 'textarea' : 'input';
+              return (
+                <div key={field.name} className="field">
+                  <label htmlFor={id}>{field.label}</label>
+                  <Control
+                    id={id}
+                    name={field.name}
+                    type={field.multiline ? undefined : field.type}
+                    rows={field.multiline ? 5 : undefined}
+                    autoComplete={field.autoComplete}
                     required
+                    aria-invalid={errors[field.name] ? 'true' : undefined}
+                    aria-describedby={errors[field.name] ? errorId : undefined}
+                    onInput={() => clearError(field.name)}
                   />
-                </motion.div>
+                  {errors[field.name] && (
+                    <p id={errorId} className="field-error">{errors[field.name]}</p>
+                  )}
+                </div>
+              );
+            })}
 
-                <motion.div 
-                  className="form-group"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Tu email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </motion.div>
+            <input type="hidden" name="_subject" value="Nuevo mensaje desde el portafolio" />
+            {/* Campo trampa para bots (Formspree descarta envíos que lo completan). */}
+            <div className="honeypot" aria-hidden="true">
+              <label htmlFor="contact-gotcha">No completar este campo</label>
+              <input id="contact-gotcha" type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+            </div>
 
-                <motion.div 
-                  className="form-group"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.7 }}
-                >
-                  <input
-                    type="text"
-                    name="subject"
-                    placeholder="Asunto"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </motion.div>
-
-                <motion.div 
-                  className="form-group"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  <textarea
-                    name="message"
-                    placeholder="Tu mensaje"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </motion.div>
-
-                {/* Campos ocultos para Formspree */}
-                <input type="hidden" name="_subject" value="🚀 Nuevo mensaje desde tu portafolio - Héctor Sanhueza" />
-                <input type="hidden" name="_captcha" value="false" />
-
-                <motion.button 
-                  type="submit" 
-                  className="btn btn-primary"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.9 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <i className="fas fa-paper-plane"></i> Enviar mensaje
-                </motion.button>
-              </form>
-            </motion.div>
-          </div>
-        </motion.div>
+            <div className="form-footer">
+              <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+                <Icon name="send" size={16} />
+                {status === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
+              </button>
+              <p className={`form-status form-status--${status}`} role="status">
+                {status === 'success' && '¡Gracias! Tu mensaje fue enviado. Te responderé pronto.'}
+                {status === 'error' && (
+                  <>
+                    No se pudo enviar el mensaje. Inténtalo de nuevo o escríbeme a{' '}
+                    <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+                  </>
+                )}
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );

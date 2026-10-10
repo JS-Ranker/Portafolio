@@ -1,0 +1,391 @@
+/* ===== Tokens =====
+   Identidad: índigo profundo + escala violeta (#4b19c8 · #7d49f2 · #a16ffe · #c5a1fb).
+   El tema oscuro es el principal; el claro es la variante. */
+:root {
+  --bg: #f7f6fc;
+  --surface: #ffffff;
+  --surface-2: #eeebfa;
+  --text: #14122e;
+  --text-muted: #524f74;
+  --border: #dedaf0;
+  --border-strong: #bdb7dc;
+  --border-input: #8a85b0;
+  --accent: #5527d6;
+  --accent-strong: #4b19c8;
+  --accent-soft: #ebe4fe;
+  --action: #5527d6;
+  --action-hover: #4b19c8;
+  --on-accent: #ffffff;
+  --name-gradient: linear-gradient(90deg, #4b19c8, #7d49f2);
+  --success: #17703f;
+  --danger: #b42318;
+  --focus: #5527d6;
+  --shadow: 0 1px 2px rgb(20 18 46 / 0.06), 0 10px 28px -14px rgb(75 25 200 / 0.25);
+
+  --font-display: 'Exo 2', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.125rem;
+  --step-2: clamp(1.35rem, 1.2rem + 0.6vw, 1.6rem);
+  --step-3: clamp(1.75rem, 1.4rem + 1.4vw, 2.4rem);
+  --step-4: clamp(2.75rem, 1.8rem + 4vw, 5.25rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 5rem;
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  --container: 1120px;
+  --header-h: 68px;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0b0a22;
+  --surface: #121132;
+  --surface-2: #1a1842;
+  --text: #eceaf7;
+  --text-muted: #a9a6c8;
+  --border: #24224d;
+  --border-strong: #37346a;
+  --border-input: #625e99;
+  --accent: #a98bff;
+  --accent-strong: #c5a1fb;
+  --accent-soft: #221b55;
+  --action: #6c3cec;
+  --action-hover: #7d49f2;
+  --on-accent: #ffffff;
+  --name-gradient: linear-gradient(90deg, #8a55f7, #c5a1fb);
+  --success: #6fd197;
+  --danger: #ff8a80;
+  --focus: #c5a1fb;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 16px 40px -20px rgb(75 25 200 / 0.45);
+}
+
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--action);
+  color: var(--on-accent);
+}
+
+[id] {
+  scroll-margin-top: calc(var(--header-h) + var(--space-5));
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--action);
+  color: var(--on-accent);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--space-3);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-inline: var(--space-4);
+  }
+}
+
+/* ===== Botones ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--step--1);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--action);
+  color: var(--on-accent);
+}
+
+.btn-primary:hover {
+  background: var(--action-hover);
+}
+
+.btn-ghost {
+  border-color: var(--border-strong);
+  background: transparent;
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--text);
+}
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* ===== Enlace de texto ===== */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.text-link:hover {
+  color: var(--accent-strong);
+  text-decoration-thickness: 2px;
+}
+
+/* ===== Etiquetas ===== */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tag {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+/* Rótulo en mayúsculas espaciadas (como "FULLSTACK DEVELOPER" en la identidad). */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* ===== Secciones ===== */
+.section {
+  padding-block: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+@media (min-width: 900px) {
+  .section-grid {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: var(--space-7);
+  }
+
+  .section-heading {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-6));
+    align-self: start;
+  }
+}
+
+.section-index {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+}
+
+.section-index::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+}
+
+.section-title {
+  font-size: var(--step-3);
+}
+
+.section-lead {
+  margin-top: var(--space-3);
+  color: var(--text-muted);
+  max-width: 34ch;
+}
+
+/* ===== Aparición al hacer scroll ===== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+main:focus {
+  outline: none;
+}
