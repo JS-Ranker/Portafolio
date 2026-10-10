@@ -107,6 +107,44 @@
   margin-top: var(--space-5);
 }
 
+.demo-accounts {
+  margin-top: var(--space-5);
+  max-width: 62ch;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.demo-accounts-title {
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.demo-accounts dl {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-2) 0 0;
+  font-size: var(--step--1);
+}
+
+.demo-accounts dl > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-2);
+}
+
+.demo-accounts dt {
+  min-width: 7rem;
+  color: var(--text-muted);
+}
+
+.demo-accounts dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
 .project-links {
   display: flex;
   flex-wrap: wrap;

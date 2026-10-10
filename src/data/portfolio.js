@@ -54,6 +54,34 @@ const sismos = '/assets/images/projects/sismos-chile';
 
 export const projects = [
   {
+    id: 'happy-pet',
+    title: 'Happy Pet',
+    kind: 'Proyecto de título',
+    summary: 'Sistema de gestión veterinaria web y móvil.',
+    description:
+      'Plataforma para una veterinaria con portal para dueños y panel para veterinarios: agenda de citas, fichas clínicas electrónicas, e-commerce, adopción de mascotas y videoconsultas. Para publicarla reforcé la seguridad del backend (contraseñas con bcrypt, sesiones con JWT y permisos por rol) y la desplegué en Vercel con MySQL en Aiven.',
+    tech: ['React', 'TypeScript', 'Node.js', 'Express', 'MySQL', 'JWT', 'Ionic', 'Angular', 'Vercel'],
+    demo: 'https://proyecto-titulo-wya2.vercel.app',
+    github: 'https://github.com/JS-Ranker/Proyecto_Titulo',
+    demoAccounts: {
+      password: 'demo1234',
+      accounts: [
+        { role: 'Dueño', login: 'RUT 11111111-1' },
+        { role: 'Veterinario', login: 'camila.rojas@happypet.cl' },
+      ],
+    },
+    images: [
+      { src: `${vet}/home.webp`, alt: 'Página de inicio de Happy Pet', width: 1600, height: 762 },
+      { src: `${vet}/mis-mascotas.webp`, alt: 'Panel “Mis mascotas” del dueño', width: 1600, height: 900 },
+      { src: `${vet}/panel-veterinario.webp`, alt: 'Panel de control del veterinario', width: 1600, height: 900 },
+      { src: `${vet}/tienda.webp`, alt: 'Tienda en línea de productos para mascotas', width: 1490, height: 1170 },
+      { src: `${vet}/adoptame.webp`, alt: 'Listado de mascotas en adopción', width: 1407, height: 786 },
+      { src: `${vet}/adoptame-detalle.webp`, alt: 'Detalle de una mascota en adopción', width: 1363, height: 1052 },
+      { src: `${vet}/login.webp`, alt: 'Pantalla de inicio de sesión', width: 1045, height: 856 },
+      { src: `${vet}/quienes-somos.webp`, alt: 'Página “Quiénes somos”', width: 1444, height: 1286 },
+    ],
+  },
+  {
     id: 'sismos-chile',
     title: 'Sismos Chile',
     kind: 'Proyecto personal',
@@ -67,25 +95,6 @@ export const projects = [
       { src: `${sismos}/general.webp`, alt: 'Mapa de Chile con los sismos de la última semana y la lista del último sismo registrado', width: 1600, height: 900 },
       { src: `${sismos}/seleccion.webp`, alt: 'Sismo seleccionado en la lista, con su detalle abierto en el mapa', width: 1600, height: 900 },
       { src: `${sismos}/movil.webp`, alt: 'Vista de Sismos Chile en un celular', width: 1600, height: 900 },
-    ],
-  },
-  {
-    id: 'happy-pet',
-    title: 'Happy Pet',
-    kind: 'Proyecto de título',
-    summary: 'Sistema de gestión veterinaria web y móvil.',
-    description:
-      'Plataforma para una veterinaria con e-commerce integrado, agenda de citas, videollamadas en vivo, notificaciones push, adopción de mascotas y fichas clínicas electrónicas.',
-    tech: ['React', 'Vite', 'Node.js', 'Express', 'Ionic', 'Angular'],
-    github: 'https://github.com/JS-Ranker/Proyecto_Titulo',
-    images: [
-      { src: `${vet}/home.webp`, alt: 'Página de inicio de Happy Pet', width: 1600, height: 762 },
-      { src: `${vet}/tienda.webp`, alt: 'Tienda en línea de productos para mascotas', width: 1490, height: 1170 },
-      { src: `${vet}/adoptame.webp`, alt: 'Listado de mascotas en adopción', width: 1407, height: 786 },
-      { src: `${vet}/adoptame-detalle.webp`, alt: 'Detalle de una mascota en adopción', width: 1363, height: 1052 },
-      { src: `${vet}/mis-mascotas.webp`, alt: 'Panel “Mis mascotas” del usuario', width: 1568, height: 1034 },
-      { src: `${vet}/login.webp`, alt: 'Pantalla de inicio de sesión', width: 1045, height: 856 },
-      { src: `${vet}/quienes-somos.webp`, alt: 'Página “Quiénes somos”', width: 1444, height: 1286 },
     ],
   },
   {

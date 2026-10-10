@@ -73,6 +73,23 @@ const Projects = () => (
                   <li key={tech} className="tag">{tech}</li>
                 ))}
               </ul>
+              {project.demoAccounts && (
+                <div className="demo-accounts">
+                  <p className="demo-accounts-title">Cuentas de prueba para la demo</p>
+                  <dl>
+                    {project.demoAccounts.accounts.map((account) => (
+                      <div key={account.role}>
+                        <dt>{account.role}</dt>
+                        <dd>{account.login}</dd>
+                      </div>
+                    ))}
+                    <div>
+                      <dt>Contraseña</dt>
+                      <dd>{project.demoAccounts.password}</dd>
+                    </div>
+                  </dl>
+                </div>
+              )}
               <div className="project-links">
                 {project.demo && (
                   <a className="text-link project-link" href={project.demo} target="_blank" rel="noopener noreferrer">
