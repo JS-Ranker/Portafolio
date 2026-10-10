@@ -48,7 +48,7 @@ const Projects = () => (
         index="02"
         id="proyectos-title"
         title="Proyectos"
-        lead="Trabajo académico y profesional, con el código disponible en GitHub."
+        lead="Trabajo académico, profesional y personal, con el código disponible en GitHub."
       />
 
       <div className="project-list">
@@ -73,11 +73,20 @@ const Projects = () => (
                   <li key={tech} className="tag">{tech}</li>
                 ))}
               </ul>
-              <a className="text-link project-link" href={project.github} target="_blank" rel="noopener noreferrer">
-                <Icon name="github" size={16} />
-                Ver código en GitHub
-                <span className="visually-hidden">: {project.title} (se abre en una pestaña nueva)</span>
-              </a>
+              <div className="project-links">
+                {project.demo && (
+                  <a className="text-link project-link" href={project.demo} target="_blank" rel="noopener noreferrer">
+                    <Icon name="external" size={16} />
+                    Ver demo en vivo
+                    <span className="visually-hidden">: {project.title} (se abre en una pestaña nueva)</span>
+                  </a>
+                )}
+                <a className="text-link project-link" href={project.github} target="_blank" rel="noopener noreferrer">
+                  <Icon name="github" size={16} />
+                  Ver código en GitHub
+                  <span className="visually-hidden">: {project.title} (se abre en una pestaña nueva)</span>
+                </a>
+              </div>
             </div>
           </article>
         ))}

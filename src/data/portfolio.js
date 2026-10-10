@@ -50,8 +50,25 @@ export const experience = [
 ];
 
 const vet = '/assets/images/projects/veterinaria';
+const sismos = '/assets/images/projects/sismos-chile';
 
 export const projects = [
+  {
+    id: 'sismos-chile',
+    title: 'Sismos Chile',
+    kind: 'Proyecto personal',
+    summary: 'Monitor de la actividad sísmica en Chile en tiempo real.',
+    description:
+      'Mapa interactivo y lista de los sismos recientes en Chile, actualizados cada minuto con datos del USGS. Muestra magnitud, profundidad y ubicación en español, con filtros por período y magnitud, prerenderizado en el servidor y caché por minuto.',
+    tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'TanStack Query', 'Leaflet', 'Vercel'],
+    demo: 'https://sismos-chile-rouge.vercel.app',
+    github: 'https://github.com/JS-Ranker/sismos-chile',
+    images: [
+      { src: `${sismos}/general.webp`, alt: 'Mapa de Chile con los sismos de la última semana y la lista del último sismo registrado', width: 1600, height: 900 },
+      { src: `${sismos}/seleccion.webp`, alt: 'Sismo seleccionado en la lista, con su detalle abierto en el mapa', width: 1600, height: 900 },
+      { src: `${sismos}/movil.webp`, alt: 'Vista de Sismos Chile en un celular', width: 1600, height: 900 },
+    ],
+  },
   {
     id: 'happy-pet',
     title: 'Happy Pet',
